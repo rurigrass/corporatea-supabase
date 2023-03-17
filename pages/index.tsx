@@ -9,6 +9,8 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '@/components/Account'
+import { useRouter } from 'next/router'
+import Authentication from '@/components/Authentication'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,13 +19,12 @@ export default function Home({ countries }: { countries: any[] }) {
   console.log(countries);
   const session = useSession()
   const supabase = useSupabaseClient()
+  const router = useRouter();
 
   return (
     <div className="max-w-7xl mx-auto bg-blue-tintiest">
       {!session ? (
-        <div className='p-12'>
-          <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={['google', 'facebook', 'twitter']} />
-        </div>
+        <Authentication />
       ) : (
         <>
           <Head>
