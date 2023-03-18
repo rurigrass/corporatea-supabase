@@ -1,13 +1,47 @@
 import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { supabase } from '@/lib/supabaseClient'
+
+const customTheme = {
+    default: {
+        colors: {
+            brand: 'hsl(153 60.0% 53.0%)',
+            brandAccent: 'hsl(154 54.8% 45.1%)',
+            brandButtonText: 'white',
+            // ..
+        },
+        dark: {
+            colors: {
+                brandButtonText: 'white',
+                defaultButtonBackground: '#2e2e2e',
+                defaultButtonBackgroundHover: '#3e3e3e',
+                //..
+            },
+        },
+        // You can also add more theme variations with different names.
+        evenDarker: {
+            colors: {
+                brandButtonText: 'white',
+                defaultButtonBackground: '#1e1e1e',
+                defaultButtonBackgroundHover: '#2e2e2e',
+                //..
+            },
+        },
+    }
+}
 
 const Authentication = () => {
     const session = useSession()
     const supabase = useSupabaseClient()
     return (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={['google', 'facebook', 'twitter']} />
+        <div className='flex flex-col'>
+            <Auth
+                supabaseClient={supabase}
+                appearance={{
+                    theme: customTheme
+                }}
+                providers={['google']}
+            />
+        </div>
     )
 }
 
