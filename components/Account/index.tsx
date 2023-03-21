@@ -80,7 +80,7 @@ export default function Account({ session }: { session: Session }) {
     }
 
     return (
-        <div className="form-widget">
+        <div className="">
             {user &&
                 <Avatar
                     uid={user.id}
